@@ -22,7 +22,7 @@ const comprarExcursion = () => {
         let cantidadValidadaPersonas = validarCantidadPersonas(cantidadPersonas);
 
         let cantidadMenores = 0;
-        if (confirm("¿Hay algún menor de edad?")) {
+        if (confirm("¿Hay algún menor de edad? Los menores tienen un 40% de descuento en todas las excursiones.")) {
             cantidadMenores = validarCantidadMenores (cantidadValidadaPersonas);
         }
 
