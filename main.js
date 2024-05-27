@@ -11,14 +11,14 @@ const comprarExcursion = () => {
         destino = prompt("Indique la excursión que desea realizar: Tour a Purmamarca - Tour a Cafayate - Tour a Tilcara", "Tour a Purmamarca").toLowerCase();
         destino = validarDestino (destino);
 
-        mes = prompt("En qué mes del 2024 desea realizar la excursión?").toLowerCase();
+        mes = prompt("En qué mes del 2024 desea realizar la excursión?", "Enero").toLowerCase();
         mes = validarMes (mes);
 
-        dia = parseInt(prompt("Qué día desea hacerla?"));
+        dia = parseInt(prompt("Qué día de " + mes + " desea hacer la excursión?", "4"));
         dia = validarDia (dia);
 
 
-        cantidadPersonas = parseInt(prompt("Cuántas personas van a realizar la excursión?"));
+        cantidadPersonas = parseInt(prompt("Cuántas personas van a realizar la excursión?", "2"));
         let cantidadValidadaPersonas = validarCantidadPersonas(cantidadPersonas);
 
         let cantidadMenores = 0;
@@ -65,7 +65,7 @@ const validarDestino = (destino) => {
 const validarMes = (mes) => {
     while (mes === "" || (mes!= "enero" && mes!= "febrero" && mes!= "marzo" && mes!= "abril" && mes!= "mayo" && mes!= "junio" && mes!= "julio" && mes!= "agosto" && mes!= "septiembre" && mes!= "octubre" && mes!= "noviembre" && mes!= "diciembre")) {
         alert("Debe ingresar un mes válido");
-        mes = prompt("En qué mes del 2024 desea realizar la excursión?").toLowerCase();
+        mes = prompt("En qué mes del 2024 desea realizar la excursión?", "Enero").toLowerCase();
     }
     return mes;
 }
@@ -82,7 +82,7 @@ const validarDia = (dia) => {
         } else {
             break;
         }
-        dia = parseInt(prompt("Qué día desea hacerla?"));
+        dia = parseInt(prompt("Qué día de " + mes + " desea hacer la excursión?", "4"));
     }
     return dia;
 }
@@ -90,14 +90,14 @@ const validarDia = (dia) => {
 const validarCantidadPersonas = (cantidadPersonas) => {
     while (isNaN(cantidadPersonas) || cantidadPersonas <= 0) {
         alert("Debe ingresar una cantidad válida de personas");
-        cantidadPersonas = parseInt(prompt("Cuántas personas van a realizar la excursión?"));
+        cantidadPersonas = parseInt(prompt("Cuántas personas van a realizar la excursión?", "2"));
     }
     return cantidadPersonas;
 }
 
 const validarCantidadMenores = (cantidadValidadaPersonas) => {
     while (true) {
-        cantidadMenores = parseInt(prompt("Cuántas personas son menores de edad?"));
+        cantidadMenores = parseInt(prompt("Cuántas personas son menores de edad?", "1"));
         if(isNaN(cantidadMenores) || cantidadMenores < 1) {
             alert ("Debe ingresar un número válido.");
         } else if (cantidadMenores > cantidadValidadaPersonas){
