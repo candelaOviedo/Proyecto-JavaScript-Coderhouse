@@ -8,11 +8,11 @@ let totalCompra = 0;
 let seguirComprando = false;
 let excursion = "";
 const mesesCon31Dias = ["enero", "marzo", "mayo", "julio", "agosto", "octubre", "diciembre"];
-const mesesCon30Dias= ["abril", "junio", "septiembre", "setiembre", "noviembre"];
+const mesesCon30Dias = ["abril", "junio", "septiembre", "setiembre", "noviembre"];
 const carrito = [];
 
-const todosLosMeses = mesesCon31Dias.concat (mesesCon30Dias);
-todosLosMeses.push ("febrero");
+const todosLosMeses = mesesCon31Dias.concat(mesesCon30Dias);
+todosLosMeses.push("febrero");
 
 const excursiones = [
     {
@@ -53,21 +53,21 @@ const excursiones = [
     {
         id: 6,
         destino: "Glaciar Perito Moreno",
-        descripcion: "Embárcate en una aventura inolvidable al Glaciar Perito Moreno, uno de los tesoros más impresionantes de la Patagonia argentina. Situado en el Parque Nacional Los Glaciares, este colosal glaciar es famoso por su majestuosidad, sus espectaculares rupturas y su accesibilidad única, permitiéndote experimentar de cerca la maravilla de la naturaleza en su estado más puro.",
+        descripcion: "Una aventura inolvidable al Glaciar Perito Moreno, uno de los tesoros más impresionantes de la Patagonia argentina. Situado en el Parque Nacional Los Glaciares, este colosal glaciar es famoso por su majestuosidad, sus espectaculares rupturas y su accesibilidad única, permitiéndote experimentar de cerca la maravilla de la naturaleza en su estado más puro.",
         precioPorPersona: 58000,
         cantidadPersonas: 1
     },
     {
         id: 7,
         destino: "Tour a Mendoza",
-        descripcion: "Embárcate en una aventura inolvidable al Glaciar Perito Moreno, uno de los tesoros más impresionantes de la Patagonia argentina. Situado en el Parque Nacional Los Glaciares, este colosal glaciar es famoso por su majestuosidad, sus espectaculares rupturas y su accesibilidad única, permitiéndote experimentar de cerca la maravilla de la naturaleza en su estado más puro.",
+        descripcion: "Un viaje memorable a Mendoza, la joya del oeste argentino famosa por sus paisajes de viñedos, vinos de clase mundial y una rica cultura gastronómica. Descubre la magia de esta región mientras te sumerges en la historia de sus bodegas centenarias y degustas los mejores vinos malbec, syrah y cabernet sauvignon, entre otros.",
         precioPorPersona: 53000,
         cantidadPersonas: 1
     },
     {
         id: 8,
-        destino: "Tour a Córdoba",
-        descripcion: "Embárcate en una aventura inolvidable al Glaciar Perito Moreno, uno de los tesoros más impresionantes de la Patagonia argentina. Situado en el Parque Nacional Los Glaciares, este colosal glaciar es famoso por su majestuosidad, sus espectaculares rupturas y su accesibilidad única, permitiéndote experimentar de cerca la maravilla de la naturaleza en su estado más puro.",
+        destino: "Tour a Tilcara",
+        descripcion: "Descubre Tilcara, un vibrante pueblo en el corazón de la Quebrada de Humahuaca. Visita el fascinante Pucará de Tilcara, un antiguo fuerte preincaico, y el Museo Arqueológico Dr. Eduardo Casanova. Sumérgete en la animada vida cultural del pueblo, recorre su mercado artesanal y disfruta de las festividades locales.",
         precioPorPersona: 48000,
         cantidadPersonas: 1
     }
@@ -75,7 +75,7 @@ const excursiones = [
 
 
 const comprarExcursion = () => {
-    mostrarExcursionesPorPrecio (ordenarExcursionesPorPrecio(excursiones));
+    mostrarExcursionesPorPrecio(ordenarExcursionesPorPrecio(excursiones));
     do {
         const excursion = validarDestino();
 
@@ -105,17 +105,28 @@ const comprarExcursion = () => {
 
     } while (seguirComprando)
 
-        mostrarResumenCompra();
+    mostrarResumenCompra();
 };
 
-const agregarAlCarrito = (excursion, cantidadValidadaPersonas, totalCompra,cantidadMenores, precioConDescuento) => {
-    carrito.push ({
-        destino: excursion.destino,
-        cantidadPersonas: cantidadValidadaPersonas,
-        precioTotal: totalCompra,
-        cantidadMenores: cantidadMenores,
-        descuentoMenores: precioConDescuento
-    });
+const agregarAlCarrito = (excursion, cantidadValidadaPersonas, totalCompra, cantidadMenores, precioConDescuento) => {
+
+    const excursionSeleccionada = carrito.find(seleccionExcursion => seleccionExcursion.destino === excursion.destino)
+
+    if (excursionSeleccionada) {
+        excursionSeleccionada.cantidadPersonas += cantidadValidadaPersonas;
+        excursionSeleccionada.precioTotal += totalCompra;
+        excursionSeleccionada.cantidadMenores += cantidadMenores;
+        excursionSeleccionada.descuentoMenores += precioConDescuento
+
+    } else {
+        carrito.push({
+            destino: excursion.destino,
+            cantidadPersonas: cantidadValidadaPersonas,
+            precioTotal: totalCompra,
+            cantidadMenores: cantidadMenores,
+            descuentoMenores: precioConDescuento
+        });
+    }
 };
 
 const mostrarResumenCompra = () => {
@@ -134,7 +145,7 @@ const obtenerExcursionPorNombre = (nombre) => {
 
 const validarDestino = () => {
     while (true) {
-        destino = prompt("Indique la excursión que desea realizar: Tour a Purmamarca - Tour a Cafayate - Tour a Tilcara", "Tour a Purmamarca").toLowerCase();
+        destino = prompt("Indique la excursión que desea realizar: Tour a Purmamarca - Tour a Cafayate - Tour a Puerto Madryn - Cataratas del Iguazu - Tour a Bariloche - Glaciar Perito Moreno - Tour a Mendoza - Tour a Tilcara", "Tour a Purmamarca").toLowerCase();
         excursion = obtenerExcursionPorNombre(destino);
         if (excursion) {
             precioPorPersona = excursion.precioPorPersona;
