@@ -25,3 +25,15 @@ h1 {
 p {
     line-height: 1.8;
 }
+
+.card {
+    max-width: 50%;
+    padding: 20px;
+    margin:15px;;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.card-image {
+    height: 280px;
+}

@@ -46,7 +46,7 @@ const excursiones = [
     {
         id: 5,
         destino: "Tour a Bariloche",
-        descripcion: "Descubre el corazón de la Patagonia argentina, un destino que combina paisajes de ensueño, aventuras emocionantes y una rica cultura local. Situada a orillas del majestuoso Lago Nahuel Huapi y rodeada por los imponentes Andes, Bariloche es el lugar perfecto para los amantes de la naturaleza y las actividades al aire libre.",
+        descripcion: "Descubre el corazón de la Patagonia argentina, un destino que combina paisajes de ensueño, aventuras emocionantes y una rica cultura local. Situada a orillas del majestuoso Lago Nahuel Huapi y rodeada por los imponentes Andes, es el lugar perfecto para los amantes de la naturaleza y las actividades al aire libre. Bariloche te recibe con sus paisajes de postal, donde los picos nevados de las montañas se reflejan en las aguas cristalinas del lago. Este destino es ideal para disfrutar de una amplia gama de actividades durante todo el año.",
         precioPorPersona: 60000,
         cantidadPersonas: 1
     },
