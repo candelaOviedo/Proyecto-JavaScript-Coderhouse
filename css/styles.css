@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+header {
+    padding: 20px 10%;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 12px;
+    background-color: rgb(232, 229, 229);
+}
+
+h1 {
+    color: olive !important;
+    text-transform: uppercase;
+    font-weight: 500px;
+    font-size: 30px;
+    margin: 0;
+}
+
+
+p {
+    line-height: 1.8;
+}
