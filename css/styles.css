@@ -13,21 +13,35 @@ header {
     background-color: rgb(232, 229, 229);
 }
 
-h1 {
+.logo-carrito {
+    font-size: 30px;
+    color: olive;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+#excursiones-contenedor {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90rem;
+    margin: 30px auto;
+}
+
+.logo {
     color: olive !important;
     text-transform: uppercase;
     font-weight: 500px;
     font-size: 30px;
-    margin: 0;
+    margin-top: 10px;
+    text-decoration: none;
 }
-
 
 p {
     line-height: 1.8;
 }
 
 .card {
-    max-width: 50%;
+    max-width: 30%;
     padding: 20px;
     margin:15px;;
     border-radius: 15px;
@@ -37,3 +51,4 @@ p {
 .card-image {
     height: 280px;
 }
+
