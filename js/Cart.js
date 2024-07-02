@@ -1,16 +1,21 @@
 
 
 const contenedorCarrito = document.getElementById("carrito-contenedor");
+const contadorTotalCarrito = document.getElementById("total-general");
 
 const renderizarCarrito = () => {
-    
+
     contenedorCarrito.innerHTML = "";
+
+    let totalGeneral = 0;
 
     carrito.forEach(excursion => {
         const divCarrito = document.createElement("div");
         divCarrito.className = "card mb-3";
 
-        let totalPorExcursion =+ excursion.precioPorPersona * excursion.cantidad;
+        let totalPorExcursion = excursion.precioPorPersona * excursion.cantidad;
+        totalGeneral += totalPorExcursion;
+
 
         divCarrito.innerHTML = `
             <div class="card-header">
@@ -33,6 +38,11 @@ const renderizarCarrito = () => {
         contenedorCarrito.appendChild(divCarrito);
     })
 
+
+    contadorTotalCarrito.textContent = totalGeneral.toFixed(2);
+
+    // Actualizar el localStorage con el nuevo estado del carrito
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 const eliminarDelCarrito = (idExcursion) => {
@@ -50,8 +60,9 @@ const eliminarDelCarrito = (idExcursion) => {
     // Renderizar nuevamente el carrito actualizado
     renderizarCarrito();
 
-    // Actualizar el localStorage con el nuevo estado del carrito
-    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
+
+
+
 
 renderizarCarrito();
