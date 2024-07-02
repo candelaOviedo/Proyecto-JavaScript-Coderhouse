@@ -7,6 +7,7 @@
 body {
     font-family: sans-serif;
 }
+
 header {
     padding: 20px 10%;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 5px 12px;
@@ -19,6 +20,7 @@ header {
     margin-right: 30px;
     margin-top: 10px;
 }
+
 #excursiones-contenedor {
     display: flex;
     justify-content: space-between;
@@ -43,7 +45,8 @@ p {
 .card {
     max-width: 30%;
     padding: 20px;
-    margin:15px;;
+    margin: 15px;
+    ;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
@@ -51,4 +54,3 @@ p {
 .card-image {
     height: 280px;
 }
-

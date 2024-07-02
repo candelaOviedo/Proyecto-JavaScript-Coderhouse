@@ -1,4 +1,5 @@
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
 const contenedorExcursiones = document.getElementById('excursiones-contenedor');
 
 const mostrarExcursiones = () => {
@@ -6,24 +7,26 @@ const mostrarExcursiones = () => {
         const div = document.createElement('div');
         div.className = "card text-center";
 
+        const { id, destino, descripcion, precioPorPersona } = excursion;
+
         div.innerHTML = `
-        <img src="${excursion.img}" class="card-img-top card-image" alt="Cafayate">
+        <img src="${excursion.img}" class="card-img-top card-image" alt="${destino}">
         <div class="card-body">
-        <h5 class="card-title"> ${excursion.destino} </h5>
-        <p class="card-text "> ${excursion.descripcion} </p>
-        <p class="card-text">Precio por persona: $ ${excursion.precioPorPersona} </p>
-        <p>Excursiones reservadas: <span id="cantidad-${excursion.id}"> 0 </span></p>
-        <div id="liveAlertPlaceholder-${excursion.id}">
+        <h5 class="card-title"> ${destino} </h5>
+        <p class="card-text "> ${descripcion} </p>
+        <p class="card-text">Precio por persona: $ ${precioPorPersona} </p>
+        <p>Excursiones reservadas: <span id="cantidad-${id}"> 0 </span></p>
+        <div id="liveAlertPlaceholder-${id}">
         </div>
-        <a href="#" id="agregar-${excursion.id}" class="btn btn-primary">Agregar al carrito</a>
+        <a href="#" id="agregar-${id}" class="btn btn-primary">Agregar al carrito</a>
         </div>
 `;
         contenedorExcursiones.appendChild(div);
 
         // Evento click para renderizar alert de bootstrap
-        const btnAgregar = div.querySelector(`#agregar-${excursion.id}`);
+        const btnAgregar = div.querySelector(`#agregar-${id}`);
         btnAgregar.addEventListener('click', () => {
-            alertAgregarCarrito(`Agregaste la excursión ${excursion.destino} al carrito`, 'success', `liveAlertPlaceholder-${excursion.id}`);
+            alertAgregarCarrito(`Agregaste la excursión ${destino} al carrito`, 'success', `liveAlertPlaceholder-${id}`);
         });
     });
 };
@@ -47,16 +50,12 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
     function agregarAlCarrito(excursion) {
         const excursionEnCarrito = carrito.find(item => item.id === excursion.id);
 
-        if (excursionEnCarrito) {
-            excursionEnCarrito.cantidad++;
-        } else {
-            excursion.cantidad = 1;
-            carrito.push(excursion);
-        }
+        // Operador ternario para incrementar cantidad o agregar nueva excursión
+        excursionEnCarrito ? excursionEnCarrito.cantidad++ : carrito.push({ ...excursion, cantidad: 1 });
+
         // Actualizar el localStorage con el nuevo estado del carrito
         localStorage.setItem('carrito', JSON.stringify(carrito));
     }
-
 }
 
 // alert para confirmar producto agregado al carrito

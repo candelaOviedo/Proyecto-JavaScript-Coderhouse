@@ -1,5 +1,3 @@
-
-
 const contenedorCarrito = document.getElementById("carrito-contenedor");
 const contadorTotalCarrito = document.getElementById("total-general");
 
@@ -27,7 +25,7 @@ const renderizarCarrito = () => {
             <a href="#" id="eliminar-${id}" class="btn btn-danger">Eliminar del carrito</a>
             `;
 
-       // Agregar evento click al botón de eliminar
+        // Agregar evento click al botón de eliminar
         const botonEliminar = divCarrito.querySelector(`#eliminar-${id}`);
         botonEliminar.addEventListener("click", (event) => {
             event.preventDefault();
@@ -55,8 +53,6 @@ const eliminarDelCarrito = (idExcursion) => {
     renderizarCarrito();
 
 }
-
-
 
 
 renderizarCarrito();
