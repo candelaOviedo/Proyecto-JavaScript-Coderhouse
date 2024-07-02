@@ -1,17 +1,16 @@
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
 
 const contenedorCarrito = document.getElementById("carrito-contenedor");
 
 const renderizarCarrito = () => {
-
+    
     contenedorCarrito.innerHTML = "";
-
 
     carrito.forEach(excursion => {
         const divCarrito = document.createElement("div");
         divCarrito.className = "card mb-3";
 
-        let totalPorExcursion = + excursion.precioPorPersona * excursion.cantidad;
+        let totalPorExcursion =+ excursion.precioPorPersona * excursion.cantidad;
 
         divCarrito.innerHTML = `
             <div class="card-header">
@@ -24,7 +23,7 @@ const renderizarCarrito = () => {
 
             `;
 
-        // Agregar evento click al botón de eliminar
+       // Agregar evento click al botón de eliminar
         const botonEliminar = divCarrito.querySelector(`#eliminar-${excursion.id}`);
         botonEliminar.addEventListener("click", (event) => {
             event.preventDefault();

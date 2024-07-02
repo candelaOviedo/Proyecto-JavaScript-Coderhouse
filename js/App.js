@@ -1,4 +1,4 @@
-
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 const contenedorExcursiones = document.getElementById('excursiones-contenedor');
 
 const mostrarExcursiones = () => {
@@ -56,8 +56,8 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
         // Actualizar el localStorage con el nuevo estado del carrito
         localStorage.setItem('carrito', JSON.stringify(carrito));
     }
-}
 
+}
 
 // alert para confirmar producto agregado al carrito
 const alertAgregarCarrito = (mensaje, tipo, placeholderId) => {
@@ -78,4 +78,5 @@ const alertAgregarCarrito = (mensaje, tipo, placeholderId) => {
         divAlert.remove();
     }, 2000);
 };
+
 
