@@ -1,28 +1,25 @@
-const contenedorCarrito = document.getElementById("carrito-contenedor");
-const contadorTotalCarrito = document.getElementById("total-general");
+const contenedorCarrito = document.getElementById("contenedor-cards");
+const contenedorTotalCarrito = document.querySelector("#total-carrito");
+let totalGeneral = 0;
 
 const renderizarCarrito = () => {
 
     contenedorCarrito.innerHTML = "";
-
-    let totalGeneral = 0;
+    totalGeneral = 0; // Reiniciar el total general al renderizar el carrito
 
     carrito.forEach(({ id, destino, precioPorPersona, cantidad }) => {
         const divCarrito = document.createElement("div");
-        divCarrito.className = "card mb-3";
 
         let totalPorExcursion = precioPorPersona * cantidad;
         totalGeneral += totalPorExcursion;
 
 
         divCarrito.innerHTML = `
-            <div class="card-header">
-                Excursión: ${destino}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Total: $ ${totalPorExcursion} </h5>
-                <p class="card-text">Cantidad: ${cantidad}</p>
-            <a href="#" id="eliminar-${id}" class="btn btn-danger">Eliminar del carrito</a>
+            <div class="card-carrito">
+            <p class="card-text-carrito">Cantidad: ${cantidad}</p>
+            <p class="card-text-carrito">Excursión: ${destino}</p>
+            <p class="card-text-carrito">Total: $ ${totalPorExcursion}</p>
+            <a href="#" id="eliminar-${id}" class="btn btn-danger btn-carrito">Eliminar del carrito</a>
             `;
 
         // Agregar evento click al botón de eliminar
@@ -35,11 +32,11 @@ const renderizarCarrito = () => {
         contenedorCarrito.appendChild(divCarrito);
     })
 
-
-    contadorTotalCarrito.textContent = totalGeneral.toFixed(2);
-
-    // Actualizar el localStorage con el nuevo estado del carrito
+    // Guardar el carrito en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    // Renderizar el total después de actualizar el carrito
+    renderizarTotal();
 }
 
 const eliminarDelCarrito = (idExcursion) => {
@@ -55,4 +52,20 @@ const eliminarDelCarrito = (idExcursion) => {
 }
 
 
+const renderizarTotal = () => {
+    contenedorTotalCarrito.innerHTML = `
+            <div class="card-header-total"> Resumen </div>
+            <hr>
+                <div class="total-compra">
+                <span class="card-text-total"> Total: </span>
+                <span class="card-text-total"> $ ${totalGeneral}</span>
+                </div>
+                <div class="buttons-total-compra">
+                <button type="button" class="btn btn-info btn-total">Seguir comprando</button>
+                <button type="button" class="btn btn-primary btn-total">Continuar compra</button>
+                </div>
+`;
+}
+
 renderizarCarrito();
+

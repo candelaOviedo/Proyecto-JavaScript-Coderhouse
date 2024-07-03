@@ -46,7 +46,6 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
         }
     });
 
-    // Función para agregar una excursión al carrito
     function agregarAlCarrito(excursion) {
         const excursionEnCarrito = carrito.find(item => item.id === excursion.id);
 
