@@ -46,14 +46,35 @@ p {
     max-width: 30%;
     padding: 20px;
     margin: 15px;
-    ;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .card-image {
     height: 280px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+.contenedor-btn-agg {
+    display: flex;
+    margin-top: auto;
+    justify-content: center;
+    display: block;
+}
+
+.btn-agregar,
+.btn-ir-carrito {
+    padding: 8px;
+}
+
 
 h2 {
     font-size: 28px;
@@ -116,7 +137,7 @@ h2 {
 }
 
 .btn-total {
-    width: 85%;
+    width: 300px;
     padding: 8px;
     margin: 10px;
 }

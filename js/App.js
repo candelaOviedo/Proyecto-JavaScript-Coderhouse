@@ -12,13 +12,15 @@ const mostrarExcursiones = () => {
         div.innerHTML = `
         <img src="${excursion.img}" class="card-img-top card-image" alt="${destino}">
         <div class="card-body">
-        <h5 class="card-title"> ${destino} </h5>
+        <h5 class="card-title"> <strong>${destino}</strong></h5>
         <p class="card-text "> ${descripcion} </p>
-        <p class="card-text">Precio por persona: $ ${precioPorPersona} </p>
-        <p>Excursiones reservadas: <span id="cantidad-${id}"> 0 </span></p>
+        <p class="card-text">Precio por persona: <strong> $ ${precioPorPersona}</strong> </p>
         <div id="liveAlertPlaceholder-${id}">
         </div>
-        <a href="#" id="agregar-${id}" class="btn btn-primary">Agregar al carrito</a>
+        <div class="contenedor-btn-agg">
+        <a href="#" id="agregar-${id}" class="btn btn-primary btn-agregar">Agregar al carrito</a>
+        <a href="../../pages/cart.html"> <button type="button" class="btn btn-success btn-ir-carrito">Ir al carrito</button></a>
+        </div>
         </div>
 `;
         contenedorExcursiones.appendChild(div);
@@ -38,7 +40,7 @@ if (window.location.pathname === '/index.html' || window.location.pathname === '
 
     // Event listener para agregar excursiones al carrito al hacer click en botón
     contenedorExcursiones.addEventListener("click", (event) => {
-        if (event.target.classList.contains("btn-primary")) {
+        if (event.target.classList.contains("btn-agregar")) {
             event.preventDefault();
             const id = event.target.id.split('-')[1];
             const excursionSeleccionada = excursiones.find(excursion => excursion.id === parseInt(id));

@@ -61,7 +61,7 @@ const renderizarTotal = () => {
                 <span class="card-text-total"> $ ${totalGeneral}</span>
                 </div>
                 <div class="buttons-total-compra">
-                <button type="button" class="btn btn-info btn-total">Seguir comprando</button>
+                <a href= "../../index.html"><button type="button" class="btn btn-info btn-total">Seguir comprando</button></a>
                 <button type="button" class="btn btn-primary btn-total">Continuar compra</button>
                 </div>
 `;
