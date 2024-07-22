@@ -1,8 +1,22 @@
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
+const obtenerExcursion = async () => {
+    try {
+        const response = await fetch('../data.json');
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al obtener las excursiones:', error);
+    }
+}
+
+
 const contenedorExcursiones = document.getElementById('excursiones-contenedor');
 
-const mostrarExcursiones = () => {
+const mostrarExcursiones = async () => {
+    const excursiones = await obtenerExcursion();
+
     excursiones.forEach(excursion => {
         const div = document.createElement('div');
         div.className = "card text-center";
