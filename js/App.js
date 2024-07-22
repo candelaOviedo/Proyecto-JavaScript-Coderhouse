@@ -1,4 +1,5 @@
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let excursiones = [];
 
 const obtenerExcursion = async () => {
     try {
@@ -15,7 +16,7 @@ const obtenerExcursion = async () => {
 const contenedorExcursiones = document.getElementById('excursiones-contenedor');
 
 const mostrarExcursiones = async () => {
-    const excursiones = await obtenerExcursion();
+    excursiones = await obtenerExcursion();
 
     excursiones.forEach(excursion => {
         const div = document.createElement('div');
@@ -47,30 +48,28 @@ const mostrarExcursiones = async () => {
     });
 };
 
+// Event listener para agregar excursiones al carrito al hacer click en botón
+contenedorExcursiones.addEventListener("click", (event) => {
+    if (event.target.classList.contains("btn-agregar")) {
+        event.preventDefault();
+        const id = event.target.id.split('-')[1];
+        const excursionSeleccionada = excursiones.find(excursion => excursion.id === parseInt(id));
+        agregarAlCarrito(excursionSeleccionada);
+    }
+});
 
 if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
-
     mostrarExcursiones();
+}
 
-    // Event listener para agregar excursiones al carrito al hacer click en botón
-    contenedorExcursiones.addEventListener("click", (event) => {
-        if (event.target.classList.contains("btn-agregar")) {
-            event.preventDefault();
-            const id = event.target.id.split('-')[1];
-            const excursionSeleccionada = excursiones.find(excursion => excursion.id === parseInt(id));
-            agregarAlCarrito(excursionSeleccionada);
-        }
-    });
+const agregarAlCarrito = (excursion) => {
+    const excursionEnCarrito = carrito.find(item => item.id === excursion.id);
 
-    function agregarAlCarrito(excursion) {
-        const excursionEnCarrito = carrito.find(item => item.id === excursion.id);
+    // Operador ternario para incrementar cantidad o agregar nueva excursión
+    excursionEnCarrito ? excursionEnCarrito.cantidad++ : carrito.push({ ...excursion, cantidad: 1 });
 
-        // Operador ternario para incrementar cantidad o agregar nueva excursión
-        excursionEnCarrito ? excursionEnCarrito.cantidad++ : carrito.push({ ...excursion, cantidad: 1 });
-
-        // Actualizar el localStorage con el nuevo estado del carrito
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-    }
+    // Actualizar el localStorage con el nuevo estado del carrito
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 // alert para confirmar producto agregado al carrito

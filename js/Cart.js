@@ -21,6 +21,7 @@ const renderizarCarrito = () => {
             <p class="card-text-carrito">Total: $ ${totalPorExcursion}</p>
             <a href="#" id="eliminar-${id}" class="btn btn-danger btn-carrito">Eliminar del carrito</a>
             `;
+
     // Agregar evento click al botón de eliminar
     const botonEliminar = divCarrito.querySelector(`#eliminar-${id}`);
 
@@ -68,7 +69,6 @@ const eliminarDelCarrito = (idExcursion) => {
 
 }
 
-
 const renderizarTotal = () => {
   contenedorTotalCarrito.innerHTML = `
             <div class="card-header-total"> Resumen </div>
@@ -82,6 +82,8 @@ const renderizarTotal = () => {
                 <button type="button" id="btn-finalizar-compra" class="btn btn-primary btn-total">Comprar</button>
                 </div>
 `;
+
+
   const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
 
   btnFinalizarCompra.addEventListener('click', (e) => {
@@ -96,6 +98,11 @@ const renderizarTotal = () => {
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
+        //Vaciar el carrito luego de la compra
+        carrito = [];
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        renderizarCarrito();
+
         Swal.fire({
           title: "Compra realizada con éxito!",
           text: "Has finalizado la compra. Se te enviarán al mail las entradas correspondientes.",
@@ -107,4 +114,6 @@ const renderizarTotal = () => {
 }
 
 
-renderizarCarrito();
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarCarrito();
+});
